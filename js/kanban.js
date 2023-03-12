@@ -21,9 +21,9 @@ const create_item = () => {
   item.id = 'item-' + order;
   item.draggable = true;
   item.addEventListener('dragstart', event =>
-    event.DataTransfer.setData('text', event.target.id));
+    event.dataTransfer.setData('text', event.target.id));
   item.addEventListener('dragend', event => 
-    event.DataTransfer.clearData());
+    event.dataTransfer.clearData());
 
   let input = document.createElement('input');
   item.appendChild(input);
@@ -37,7 +37,7 @@ const create_item = () => {
       item.innerHTML = input.value;
       adding = false;
     } else {
-      error.innerHTML = 'message';
+      error.innerHTML = message;
     }
   });
   item.appendChild(save_btn);
@@ -48,8 +48,8 @@ const create_item = () => {
 document.querySelectorAll('.drop').forEach(element => {
   element.addEventListener('drop', event => {
     event.preventDefault();
-    const id = event.DataTransfer.getData('text');
+    const id = event.dataTransfer.getData('text');
     event.target.appendChild(document.getElementById(id));
   });
-    element.addEventListener('dragover', event => event.preventDefault());
+  element.addEventListener('dragover', event => event.preventDefault());
 });
